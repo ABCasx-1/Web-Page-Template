@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="viewport"
+        content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+    <title>Vod</title>
+    <link rel="shortcut icon" type="image/x-icon" href="./fly.ico">
+
+    <link rel="stylesheet" href="//g.alicdn.com/de/prismplayer/2.9.18/skins/default/aliplayer-min.css" />
+    <script type="text/javascript" src="//g.alicdn.com/de/prismplayer/2.9.18/aliplayer-min.js"></script>
+</head>
+
+<body>
+    <div class="prism-player" id="J_prismPlayer"></div>
+    <script>
+        var player = new Aliplayer({
+            id: "J_prismPlayer",
+            autoplay: true,
+            width: "1920px",
+            height: "1280px",
+            vid: "09e25520ea2971edb53e7035d0b20102",
+            playauth: '',
+            cover: ''
+        });
+    var palyerDom = document.createElement('div');
+    palyerDom.id = 'J_prismPlayer';
+    palyerDom.style.width = '1920px';
+    palyerDom.style.height = '1280px';
+    palyerDom.className = 'prism-player';
+    var body = document.getElementsByTagName('body');
+    if(body.length) {
+        body[0].appendChild(palyerDom);
+        var player = new Aliplayer({
+          id: "J_prismPlayer",
+          autoplay: true,
+          width:"1920px",
+          height:"1280px",
+          vid:"09e25520ea2971edb53e7035d0b20102",
+          playauth:'eyJTZWN1cml0eVRva2VuIjoiQ0FJU2h3TjFxNkZ0NUIyeWZTaklyNWZBQjlqRzJwRVkrWUhkYkJEUW8ySVRhUHg3Z3BUeGlEejJJSHBLZVhkdUFlQVhzL28wbW1oWjcvWVlsck1xRnNFZEZCS2FOSm9vdDhRSHFWandKcExGc3QySjZyOEpqc1ZUMXBNUDRFZXBzdlhKYXNEVkVmbDJFNVhFTWlJUi8wMGU2TC8rY2lyWXBUWEhWYlNDbFo5Z2FQa09Rd0M4ZGtBb0xkeEtKd3hrMnQxNFVtWFdPYVNDUHdMU2htUEJMVXhtdldnR2wyUnp1NHV5M3ZPZDVoZlpwMXI4eE80YXhlTDBQb1AyVjgxbExacGxlc3FwM0k0U2M3YmFnaFpVNGdscjhxbHg3c3BCNVN5Vmt0eVdHVWhKL3phTElvaXQ3TnBqZmlCMGVvUUFQb3BGcC9YNmp2QWF3UExVbTliWXhncGhCOFIrWGo3RFpZYXV4N0d6ZW9XVE84MCthS3p3TmxuVXo5bUxMZU9WaVE0L1ptOEJQdzQ0RUxoSWFGMElVRXh6RVcrRmV2TC9wZ21RUGwvK0ZKTG9pdjltamNCSHFIeno1c2VQS2xTMVJMR1U3RDBWSUpkVWJUbHpiVUJMZ3pLNUl2NWJMVmNTS3dJK1YreVBNYXgzYlFGRHI1M3ZzVGJiWHpaYjBtcHR1UG56ZHdKNFRXYnJna2VVR29BQlM4ejJCWWRnZFVZM0J1QVFUZWVFcG44WnpjL2luM0VjY25nOGdlZjlhVEZKUUtvLzdnY0hyZ3hNZkkyNExiOXZmRndCZS93M0hvb1B5VW9HVjlkdXk0NTdEeXgrYXlKcFQ0c0ZDd29rSFozeUNzZC81UnJOZUdsTzdXbTdPR29WdUJKSjZXU21GZm5tWkRSdW1OWkp6ZzFhTEVvYXBvQ1g2VGVNTGJKSHJpbz0iLCJBdXRoSW5mbyI6IntcIkNJXCI6XCJqQU5uWGs3VFZtdUJzRTJyeVVUc1hLQ3lWN3VyOUkrSmxjRC9Wb0dIdXBXME4yNmVsK0krM0VtNC9MWktNdjhwXCIsXCJDYWxsZXJcIjpcIktHVUZOSTdlQUNHazdQSXdXSDliTDRraklvUVQ1L25lSk9jblRHalp2RVU9XCIsXCJFeHBpcmVUaW1lXCI6XCIyMDIzLTA1LTIxVDEyOjQyOjM2WlwiLFwiTWVkaWFJZFwiOlwiODlkN2YyYjBlYjUyNzFlZGJmYmQwNzY0YTNmYzAxMDJcIixcIlNpZ25hdHVyZVwiOlwiT0dXY3cycVllZ1hGTlAwMmM1QklJaFRyOTFnPVwifSIsIlZpZGVvTWV0YSI6eyJTdGF0dXMiOiJOb3JtYWwiLCJWaWRlb0lkIjoiODlkN2YyYjBlYjUyNzFlZGJmYmQwNzY0YTNmYzAxMDIiLCJUaXRsZSI6IjMiLCJDb3ZlclVSTCI6Imh0dHA6Ly9vdXRpbi05YmJhY2U4ZGQ5ZjExMWVkYTYwYTAwMTYzZTFjNzQyNi5vc3MtY24tc2hhbmdoYWkuYWxpeXVuY3MuY29tLzg5ZDdmMmIwZWI1MjcxZWRiZmJkMDc2NGEzZmMwMTAyL3NuYXBzaG90cy8xMTNkZjYyNTg1Yjg0OWE3ODIzYzJlYmVmMjYwYzk0Ny0wMDAwMS5qcGc/RXhwaXJlcz0xNjg0Njc2NDU2Jk9TU0FjY2Vzc0tleUlkPUxUQUl3a0tTTGNVZkkydTQmU2lnbmF0dXJlPWpzZnJnQzNYc08xQWdJYWU1WVNvVTJTMVYwayUzRCIsIkR1cmF0aW9uIjo1LjEzMzN9LCJBY2Nlc3NLZXlJZCI6IlNUUy5OVHVMYnI3TjlOQzZuNmFHYkZkc1dtUVpqIiwiQWNjZXNzS2V5U2VjcmV0IjoiQUtvN1lEeDZyc2FDTHRZUFV1NVN3SlpSbVlmVTNQaERZVlI2N0d4NFM4YmIiLCJSZWdpb24iOiJjbi1zaGFuZ2hhaSIsIkN1c3RvbWVySWQiOjE1NjA5NjYxOTAxODgwMzl9',
+          cover:''
+       });
+    }
+    </script>
+</body>

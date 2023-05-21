@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>我的B站 (*^▽^*)</title>
+    <link rel="shortcut icon" type="image/x-icon" href="./fly.ico">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.10.2/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-size: 14px;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            background-color: #d1e0b9;
+        }
+
+        .header {
+            height: 60px;
+            background-color: #acd4d4;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 99;
+        }
+
+        .logo {
+            float: left;
+            margin-left: 30px;
+            line-height: 60px;
+        }
+
+        .nav {
+            float: left;
+            list-style: none;
+            padding-left: 30px;
+            margin-left: 15px;
+            border-left: 1px solid #ccc;
+        }
+
+        .nav li {
+            display: inline-block;
+            margin-right: 15px;
+            line-height: 60px;
+        }
+
+        .nav li a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .nav li a:hover {
+            color: #e34a4a;
+        }
+
+        .login {
+            color: #073e86;
+            float: right;
+            margin-right: 80px;
+            line-height: 60px;
+        }
+
+        .search {
+            position: absolute;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 280px;
+            height: 36px;
+            border: none;
+            border-radius: 30px;
+            padding: 0 20px;
+            background-color: #f5f5f5;
+            font-size: 14px;
+        }
+
+        .search:focus {
+            outline: none;
+        }
+
+        .search-btn {
+            position: absolute;
+            top: 12px;
+            left: 59%;
+            width: 50px;
+            height: 36px;
+            border: none;
+            border-radius: 30px;
+            background-color: #e34a4a;
+            color: #fff;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .slider .prev,
+        .slider .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5em;
+            font-weight: bold;
+            border: none;
+            outline: none;
+            background: none;
+            cursor: pointer;
+            color: #738bab;
+            padding: 10px;
+        }
+
+        .slider .prev {
+            left: 23%;
+        }
+
+        .slider .next {
+            right: 23%;
+        }
+
+        .slider .prev:hover,
+        .slider .next:hover {
+            color: #889bb2;
+        }
+
+        .slider {
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            position: relative;
+           
+        }
+
+        .slides {
+            display: flex;
+            width: 300%;
+            height: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slides img { 
+            border:none;
+            border-radius: 30px;
+            width: 33.33%;
+            /* height: 100%; */
+            float: left;
+            object-fit: contain;
+            max-height: 100%;
+        }
+
+        /* .slider .slides {
+            animation: slide 10s infinite;
+        } */
+
+        @keyframes slide {
+            0% {
+                transform: translateX(0%);
+            }
+
+            25% {
+                transform: translateX(0%);
+            }
+
+            30% {
+                transform: translateX(-33.33%);
+            }
+
+            55% {
+                transform: translateX(-33.33%);
+            }
+
+            60% {
+                transform: translateX(-66.66%);
+            }
+
+            85% {
+                transform: translateX(-66.66%);
+            }
+
+            90% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .video-grid {
+            max-width: 1080px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 20px;
+            padding: 30px 0;
+            box-sizing: border-box;
+        }
+
+        .video-item {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            text-align: left;
+            background-color: #fff;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 0 5px rgba(0, 0, 0, .1);
+            cursor: pointer;
+        }
+
+        .video-item:hover {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, .1);
+        }
+
+        .video-item::before {
+            content: "";
+            display: block;
+            padding-top: 56.25%;
+            /* 视频缩略图的占位符高度（16:9） */
+            background-color: #f3f3f3;
+        }
+
+        .video-item img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70%;
+            object-fit: cover;
+            opacity: 0.8;
+            transition: opacity .3s ease-in-out;
+        }
+
+        .video-item:hover img {
+            opacity: 1;
+        }
+
+        .video-play {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 30px;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, .2);
+            opacity: 0.8;
+            transition: opacity .3s ease-in-out;
+        }
+
+        .video-item:hover .video-play {
+            opacity: 1;
+        }
+
+        .video-info {
+            padding: 10px;
+        }
+
+        .video-title {
+            font-size: 16px;
+            line-height: 1.4;
+            height: 25 px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .video-avatar {
+            display: inline-block;
+            margin-right: 10px;
+            width: 36px;
+            height: 26px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        /* .video-avatar img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        } */
+
+        .video-author {
+            display: inline-block;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .video-info i {
+            margin-right: 10px;
+            color: #999;
+        }
+
+        .video-info span {
+            margin-right: 10px;
+            color: #999;
+            font-size: 14px;
+        }
+
+        #dialog {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 999;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .dialog-content {
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 20px;
+            max-width: 100%;
+            max-height: 100%;
+            overflow: auto;
+        }
+
+        #btnCloseDialog {
+            position: absolute;
+            top: 23%;
+            left: 69%;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <img src="./logo.png" align="left" height="90%"></img>
+        <ul class="nav">
+            <li><a href="#">首页</a></li>
+            <li><a href="#">动漫</a></li>
+            <li><a href="#">游戏</a></li>
+            <li><a href="#">生活</a></li>
+            <li><a href="#">音乐</a></li>
+            <li><a href="#">热榜</a></li>
+        </ul>
+        <form class="search-form" method="get">
+            <input class="search" type="text" placeholder="搜索你喜欢的内容~">
+            <button class="search-btn" type="submit"><i class="fas fa-search"></i></button>
+        </form>
+        <div class="login">
+            <a href="./login.html">登录</a>
+            <span>|</span>
+            <a href="./register.html">注册</a>
+        </div>
+    </div>
+    <br> <br> <br> <br> <br> <br>
+    <div class="slider">
+        <div class="slides">
+            <img src="https://dingyue.ws.126.net/2020/0328/93c965cbj00q7w5vo0014c0017a00oem.jpg" alt="slide1">
+            <img src="https://img0.baidu.com/it/u=3197850918,2696040803&fm=253&fmt=auto&app=138&f=JPEG?w=890&h=500"
+                alt="slide2">
+
+            <button class="prev">&#10094;</button>
+            <button class="next">&#10095;</button>
+        </div>
+    </div>
+
+    <div id="dialog">
+        <div class="dialog-content">
+            <video id="do" src="./example.mp4" controls autoplay></video>
+        </div>
+        <button id="btnCloseDialog">X</button>
+    </div>
+    <div id="main">
+        <div class="video-grid">
+
+            <div class="video-item">
+                <img src="https://img1.baidu.com/it/u=986131659,638608511&fm=253&fmt=auto&app=120&f=JPEG?w=1160&h=660">
+                <div class="video-play"><i class="fas fa-play"></i></div>
+                <div class="video-info">
+                    <div class="video-title">第1个视频</div>
+                    <div class="video-author">
+                        <!-- <div class="video-avatar"><img src="A"></div> -->
+                        <span>up主1</span><i class="fas fa-fire"></i><span>10万</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-item">
+                <img src="https://img1.baidu.com/it/u=986131659,638608511&fm=253&fmt=auto&app=120&f=JPEG?w=1160&h=660">
+                <div class="video-play"><i class="fas fa-play"></i></div>
+                <div class="video-info">
+                    <div class="video-title">第2个视频</div>
+                    <div class="video-author">
+                        <span>up主2</span><i class="fas fa-fire"></i><span>20万</span>
+                    </div>
+                </div>
+            </div>
+            <div class="video-item">
+                <img src="https://img1.baidu.com/it/u=986131659,638608511&fm=253&fmt=auto&app=120&f=JPEG?w=1160&h=660">
+                <div class="video-play"><i class="fas fa-play"></i></div>
+                <div class="video-info">
+                    <div class="video-title">第3个视频</div>
+                    <div class="video-author">
+                        <span>up主3</span><i class="fas fa-fire"></i><span>30万</span>
+                    </div>
+                </div>
+            </div>
+            <div class="video-item">
+                <img src="https://img1.baidu.com/it/u=986131659,638608511&fm=253&fmt=auto&app=120&f=JPEG?w=1160&h=660">
+                <div class="video-play"><i class="fas fa-play"></i></div>
+                <div class="video-info">
+                    <div class="video-title">第4个视频</div>
+                    <div class="video-author">
+                        <span>up主4</span><i class="fas fa-fire"></i><span>40万</span>
+                    </div>
+                </div>
+            </div>
+            <div class="video-item">
+                <img class="pic"
+                    src="https://img1.baidu.com/it/u=986131659,638608511&fm=253&fmt=auto&app=120&f=JPEG?w=1160&h=660">
+                <div class="video-play"><i class="fas fa-play"></i></div>
+                <div class="video-info">
+                    <div class="video-title">第5个视频</div>
+                    <div class="video-author">
+                        <span>up主5</span><i class="fas fa-fire"></i><span>50万</span>
+                    </div>
+                </div>
+            </div>
+            <div class="video-item">
+                <img src="https://img1.baidu.com/it/u=986131659,638608511&fm=253&fmt=auto&app=120&f=JPEG?w=1160&h=660">
+                <div class="video-play"><i class="fas fa-play"></i></div>
+                <div class="video-info">
+                    <div class="video-title">第6个视频</div>
+                    <div class="video-author">
+                        <span>up主6</span><i class="fas fa-fire"></i><span>60万</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        var dialog = document.getElementById("dialog");
+        var btnCloseDialog = document.getElementById("btnCloseDialog");
+        document.getElementById('main').addEventListener('click', function (event) {
+            // 判断点击事件源元素是否为 myDiv 元素
+            dialog.style.display = "flex";
+
+
+        });
+        btnCloseDialog.onclick = function () {
+            dialog.style.display = "none";
+            document.getElementById('do').pause();
+            document.getElementById('do').currentTime = 0;
+        };
+        var slideIndex = 1;
+        showSlides(slideIndex);
+        var autoSlide = setInterval(function () {
+            plusSlides(1);
+        }, 2000);
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        // 显示当前图片
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            var i;
+            var slides = document.getElementsByClassName("slides")[0].getElementsByTagName("img");
+            var prevBtn = document.querySelector(".prev");
+            var nextBtn = document.querySelector(".next");
+
+            // 循环滚动
+            if (n > slides.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = slides.length }
+            // 隐藏所有图片
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            // 显示当前图片
+            slides[slideIndex - 1].style.display = "block";
+
+            // 点击事件
+            prevBtn.onclick = function () {
+                plusSlides(-1);
+            }
+            nextBtn.onclick = function () {
+                plusSlides(1);
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>

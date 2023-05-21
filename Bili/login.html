@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录</title>
+    <link rel="shortcut icon" type="image/x-icon" href="./fly.ico">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="content">
+        <div class="login-wrapper">
+            <div class="left-img">
+            </div>
+            <div class="right-login-form">
+                <div class="form-wrapper">
+                    <br>
+                    <div id="info" ></div>
+                    <div class="input-items">
+                        <span class="input-tips">
+                            👨用户名
+                        </span>
+                        <input type="text" id="username" class="inputs" placeholder="请输入用户名~">
+                    </div>
+                    <div class="input-items">
+                        <span class="input-tips">
+                            🔑密码
+                        </span>
+                        <input type="password" id="password" class="inputs" placeholder="请输入密码~">
+                        <span class="forgot">忘记密码?</span>
+                    </div>
+                    <button type="button" class="btn" id="login">立即登录</button>
+                    <div class="siginup-tips">
+                        <span>没有账号?</span>
+                        <span id="register">立即注册</span>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    var form = document.querySelector("form");
+    var username = document.getElementById("username");
+    var password = document.getElementById("password");
+    var btn = document.getElementById("login");
+    var info = document.getElementById("info");
+    var btn1 = document.getElementById("register");
+    btn.addEventListener("click", function () {
+        if (username.value === "" || password.value === "") {
+            info.textContent = "请输入用户名或密码~";
+            info.className = "error";
+            info.style.color = "#e14e74";
+        } else if (username.value === "admin" && password.value === "123") {
+            info.textContent = "登录成功✔";
+            info.className = "success";
+            info.style.color = "#e14e74";
+            location.href = "./home.html"; // 登录成功后跳转页面
+        } else {
+            info.textContent = "用户名或密码错误✖";
+            info.className = "error";
+            info.style.color = "#e14e74";
+        }
+    });
+    btn1.addEventListener("click", function () {  
+        location.href = "./register.html";
+     });
+</script>
+
+</html>
